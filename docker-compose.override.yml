@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  eshop.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "443:443"
+    extra_hosts:
+      - "ibmke.eu:0.0.0.0"
+
+ #dockerwintest:
+ #  environment:
+ #    - ASPNETCORE_ENVIRONMENT=Development
+ #  ports:
+ #    - "80"
+ #
