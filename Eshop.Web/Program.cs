@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace Eshop.Web
 {
@@ -19,6 +20,13 @@ namespace Eshop.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .UseKestrel(opt =>
+            {
+                opt.Listen(IPAddress.Any, 443, opt2 => {
+                    opt2.UseHttps("appservicecertificate.pfx", "A");
+                });
+                
+            })
                 .UseStartup<Startup>()
                 .Build();
     }
